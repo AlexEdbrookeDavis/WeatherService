@@ -18,11 +18,6 @@ import com.nike.riposte.util.AwsUtil;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
-import com.myorg.ripostemicroservicetemplate.endpoints.ExampleBasicAuthProtectedEndpoint;
-import com.myorg.ripostemicroservicetemplate.endpoints.ExampleCassandraAsyncEndpoint;
-import com.myorg.ripostemicroservicetemplate.endpoints.ExampleDownstreamHttpAsyncEndpoint;
-import com.myorg.ripostemicroservicetemplate.endpoints.ExampleEndpoint;
-import com.myorg.ripostemicroservicetemplate.endpoints.ExampleProxyRouterEndpoint;
 import com.myorg.ripostemicroservicetemplate.endpoints.HealthCheckEndpoint;
 import com.myorg.ripostemicroservicetemplate.error.ProjectApiErrorsImpl;
 import com.typesafe.config.Config;
@@ -87,22 +82,10 @@ public class AppGuiceModule extends AbstractModule {
     @Singleton
     @Named("appEndpoints")
     public Set<Endpoint<?>> appEndpoints(
-        HealthCheckEndpoint healthCheckEndpoint,
-        // TODO: EXAMPLE CLEANUP - Remove these example endpoints from this method's arguments and don't return them from this method.
-        ExampleEndpoint.Get exampleEndpointGet,
-        ExampleEndpoint.Post exampleEndpointPost,
-        ExampleCassandraAsyncEndpoint exampleCassandraAsyncEndpoint,
-        ExampleDownstreamHttpAsyncEndpoint exampleDownstreamHttpAsyncEndpoint,
-        ExampleProxyRouterEndpoint exampleProxyRouterEndpoint,
-        ExampleBasicAuthProtectedEndpoint.Get exampleBasicAuthProtectedEndpointGet,
-        ExampleBasicAuthProtectedEndpoint.Post exampleBasicAuthProtectedEndpointPost
+        HealthCheckEndpoint healthCheckEndpoint
     ) {
         return new LinkedHashSet<>(Arrays.<Endpoint<?>>asList(
-            healthCheckEndpoint,
-            // Example endpoints
-            exampleEndpointGet, exampleEndpointPost, exampleCassandraAsyncEndpoint,
-            exampleDownstreamHttpAsyncEndpoint, exampleProxyRouterEndpoint,
-            exampleBasicAuthProtectedEndpointGet, exampleBasicAuthProtectedEndpointPost
+            healthCheckEndpoint
         ));
     }
 
@@ -218,14 +201,14 @@ public class AppGuiceModule extends AbstractModule {
         // TODO: EXAMPLE CLEANUP - Think about what you want this method to do and adjust it accordingly.
         // For most projects you probably want everything except the healthcheck endpoint.
         //      That's the commented-out line below.
-//        return endpoints.stream().filter(i -> !(i instanceof HealthCheckEndpoint)).collect(Collectors.toList());
+        return endpoints.stream().filter(i -> !(i instanceof HealthCheckEndpoint)).collect(Collectors.toList());
 
         // For the example template though, we only want the ExampleBasicAuthProtectedEndpoint.Post class protected and
         //      everything else should be allowed. Once you're done with the examples and ready to build your app you
         //      may want to delete the line below and uncomment the line above, or otherwise adjust the filter for your
         //      needs.
-        return endpoints.stream().filter(i -> (i instanceof ExampleBasicAuthProtectedEndpoint.Post))
-                        .collect(Collectors.toList());
+//        return endpoints.stream().filter(i -> (i instanceof ExampleBasicAuthProtectedEndpoint.Post))
+//                        .collect(Collectors.toList());
     }
 
     @Provides

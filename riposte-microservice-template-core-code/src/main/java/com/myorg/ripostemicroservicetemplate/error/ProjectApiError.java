@@ -4,8 +4,6 @@ import com.nike.backstopper.apierror.ApiError;
 import com.nike.backstopper.apierror.ApiErrorBase;
 import com.nike.internal.util.MapBuilder;
 
-import com.myorg.ripostemicroservicetemplate.endpoints.ExampleEndpoint;
-
 import java.util.Map;
 import java.util.UUID;
 
