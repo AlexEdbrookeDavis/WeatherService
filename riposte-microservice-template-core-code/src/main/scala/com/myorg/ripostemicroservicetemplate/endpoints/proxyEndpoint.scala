@@ -13,7 +13,7 @@ import javax.inject.Named;
 
 import io.netty.channel.ChannelHandlerContext;
 class ProxyEndpoint(z: com.nike.riposte.util.Matcher, x: java.lang.String, c: Int, v: java.lang.String, b: Boolean) extends SimpleProxyRouterEndpoint(z,x,c,v,b) {
-  def this() = this(Matcher.`match`("/hello"), "", 1, "", true)
+  def this() = this(Matcher.`match`("/exampleProxy"), "localhost", 8080, "/hello", false)
 }
 
 /**
