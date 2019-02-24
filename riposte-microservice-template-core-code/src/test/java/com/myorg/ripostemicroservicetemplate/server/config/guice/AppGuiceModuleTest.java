@@ -12,8 +12,6 @@ import com.nike.riposte.metrics.codahale.contrib.DefaultJMXReporterFactory;
 import com.nike.riposte.metrics.codahale.contrib.DefaultSLF4jReporterFactory;
 import com.nike.riposte.server.config.AppInfo;
 import com.nike.riposte.server.http.Endpoint;
-import com.nike.riposte.serviceregistration.eureka.EurekaHandler;
-import com.nike.riposte.serviceregistration.eureka.EurekaServerHook;
 import com.nike.riposte.typesafeconfig.util.TypesafeConfigUtil;
 
 import com.google.inject.Guice;
@@ -123,37 +121,6 @@ public class AppGuiceModuleTest {
         assertThat(obj).isNotNull();
     }
 
-    @Test
-    public void eurekaServerHook_returns_non_null_object() {
-        EurekaServerHook obj = injector.getInstance(EurekaServerHook.class);
-        assertThat(obj).isNotNull();
-    }
-
-    @Test
-    @SuppressWarnings("unchecked")
-    public void eurekaServerHook_uses_config_for_suppliers() {
-        // given
-        Config configMock = mock(Config.class);
-        AppGuiceModule agm = new AppGuiceModule(configMock);
-        EurekaServerHook eurekaServerHook = agm.eurekaServerHook();
-        EurekaHandler eurekaHandler = eurekaServerHook.eurekaHandler;
-        Supplier<Boolean> eurekaIsDisabledPropertySupplier =
-            (Supplier<Boolean>) Whitebox.getInternalState(eurekaHandler, "eurekaIsDisabledPropertySupplier");
-        Supplier<String> datacenterTypePropertySupplier =
-            (Supplier<String>) Whitebox.getInternalState(eurekaHandler, "datacenterTypePropertySupplier");
-
-        // when
-        eurekaIsDisabledPropertySupplier.get();
-
-        // then
-        verify(configMock).getBoolean(EurekaHandler.DISABLE_EUREKA_INTEGRATION);
-
-        // and when
-        datacenterTypePropertySupplier.get();
-
-        // then
-        verify(configMock).getString(EurekaHandler.EUREKA_DATACENTER_TYPE_PROP_NAME);
-    }
 
     @Test
     @SuppressWarnings("unchecked")

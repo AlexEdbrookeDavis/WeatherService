@@ -146,16 +146,6 @@ public class AppServerConfigTest {
         assertThat(obj).isNull();
     }
 
-    @Test
-    public void requestSecurityValidator_returns_a_BasicAuthSecurityValidator() {
-        // given
-        AppServerConfig asc = new AppServerConfig(configForTesting);
-
-        // expect
-        assertThat(asc.requestSecurityValidator())
-            .isNotNull()
-            .isInstanceOf(BasicAuthSecurityValidator.class);
-    }
 
     @Test
     public void isDebugActionsEnabled_comes_from_config() {

@@ -108,21 +108,6 @@ public class AppServerConfig implements ServerConfig {
     }
 
     @Override
-    public RequestSecurityValidator requestSecurityValidator() {
-        return guiceValues.basicAuthSecurityValidator;
-    }
-
-    @Override
-    public List<PostServerStartupHook> postServerStartupHooks() {
-        return Collections.singletonList(guiceValues.eurekaServerHook);
-    }
-
-    @Override
-    public List<ServerShutdownHook> serverShutdownHooks() {
-        return Collections.singletonList(guiceValues.eurekaServerHook);
-    }
-
-    @Override
     public Collection<Endpoint<?>> appEndpoints() {
         return guiceValues.appEndpoints;
     }

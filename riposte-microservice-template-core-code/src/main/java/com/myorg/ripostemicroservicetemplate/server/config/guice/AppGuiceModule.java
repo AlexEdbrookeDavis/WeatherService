@@ -12,8 +12,6 @@ import com.nike.riposte.metrics.codahale.contrib.DefaultSLF4jReporterFactory;
 import com.nike.riposte.server.config.AppInfo;
 import com.nike.riposte.server.error.validation.BasicAuthSecurityValidator;
 import com.nike.riposte.server.http.Endpoint;
-import com.nike.riposte.serviceregistration.eureka.EurekaHandler;
-import com.nike.riposte.serviceregistration.eureka.EurekaServerHook;
 import com.nike.riposte.util.AwsUtil;
 
 import com.google.inject.AbstractModule;
@@ -105,15 +103,6 @@ public class AppGuiceModule extends AbstractModule {
     @Singleton
     public AsyncHttpClientHelper asyncHttpClientHelper() {
         return new AsyncHttpClientHelper();
-    }
-
-    @Provides
-    @Singleton
-    public EurekaServerHook eurekaServerHook() {
-        return new EurekaServerHook(
-            () -> appConfig.getBoolean(EurekaHandler.DISABLE_EUREKA_INTEGRATION),
-            () -> appConfig.getString(EurekaHandler.EUREKA_DATACENTER_TYPE_PROP_NAME)
-        );
     }
 
     @Provides
