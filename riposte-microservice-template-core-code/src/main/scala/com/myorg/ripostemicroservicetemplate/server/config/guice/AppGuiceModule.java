@@ -16,6 +16,7 @@ import com.nike.riposte.util.AwsUtil;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
+import com.personal.weatherservice.endpoints.ScalaEndpoint;
 import com.myorg.ripostemicroservicetemplate.endpoints.HealthCheckEndpoint;
 import com.myorg.ripostemicroservicetemplate.error.ProjectApiErrorsImpl;
 import com.typesafe.config.Config;
@@ -80,10 +81,12 @@ public class AppGuiceModule extends AbstractModule {
     @Singleton
     @Named("appEndpoints")
     public Set<Endpoint<?>> appEndpoints(
-        HealthCheckEndpoint healthCheckEndpoint
+        HealthCheckEndpoint healthCheckEndpoint,
+        ScalaEndpoint       scalaEndpoint
     ) {
         return new LinkedHashSet<>(Arrays.<Endpoint<?>>asList(
-            healthCheckEndpoint
+            healthCheckEndpoint,
+            scalaEndpoint
         ));
     }
 
