@@ -2,6 +2,7 @@ evaluationDependsOn(':')
 
 dependencies {
     compile(
+            'org.scala-lang:scala-library:2.12.2',
             "com.nike.riposte:riposte-spi:$riposteVersion",
             "com.nike.riposte:riposte-core:$riposteVersion",
             "com.nike.riposte:riposte-typesafe-config:$riposteVersion",
