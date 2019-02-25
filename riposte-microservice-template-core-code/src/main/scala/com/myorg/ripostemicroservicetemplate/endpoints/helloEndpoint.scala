@@ -20,7 +20,7 @@ import javax.inject.Named;
 import io.netty.channel.ChannelHandlerContext;
 
 
-class ScalaEndpoint extends StandardEndpoint[Void, String] {
+class HelloEndpoint extends StandardEndpoint[Void, String] {
   override def requestMatcher(): Matcher = Matcher.`match`("/hello")
 
   override def execute(

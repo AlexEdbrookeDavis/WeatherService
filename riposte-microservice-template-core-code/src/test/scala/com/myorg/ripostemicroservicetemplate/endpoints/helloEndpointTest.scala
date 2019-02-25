@@ -1,5 +1,5 @@
 package com.myorg.ripostemicroservicetemplate.endpoints;
-import com.personal.weatherservice.endpoints.ScalaEndpoint;
+import com.personal.weatherservice.endpoints.HelloEndpoint;
 
 import com.nike.riposte.server.http.ResponseInfo;
 import com.nike.riposte.util.Matcher;
@@ -13,16 +13,16 @@ import org.junit.Assert._
 
 
 class helloEndpointTest {
-    private var helloEndpoint: ScalaEndpoint  = _
+    private var helloEndpoint: HelloEndpoint  = _
 
     def testConstruction {
-        helloEndpoint = new ScalaEndpoint()
+        helloEndpoint = new HelloEndpoint()
 
         assertEquals(helloEndpoint.requestMatcher(), Matcher.`match`("/hello"))
     }
 
     def testResponse {
-        helloEndpoint = new ScalaEndpoint()
+        helloEndpoint = new HelloEndpoint()
 
         val responseFuture: CompletableFuture[ResponseInfo[String]] = helloEndpoint.execute(null, null, null)
         val responseInfo: ResponseInfo[String] = responseFuture.join()
