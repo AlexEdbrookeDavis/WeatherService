@@ -17,7 +17,7 @@ import io.netty.handler.codec.http.HttpResponse;
 
 class ProxyEndpoint(z: com.nike.riposte.util.Matcher, x: java.lang.String, c: Int, v: java.lang.String, b: Boolean) extends SimpleProxyRouterEndpoint(z,x,c,v,b) {
 
-  def this() = this(Matcher.`match`("/exampleProxy"), "api.weather.gov", 443, "", true)
+  def this() = this(Matcher.`match`("/exampleProxy"), "api.weather.gov", 443, "/gridpoints/TOP/31,80/forecast", true)
 
 }
 
